@@ -34,7 +34,7 @@ $(function () {
       return endGame(board, player);
     }
 
-    if (playerHasValidMoves(player, board)) {
+    if (playerHasValidMoves(player.next, board)) {
       return player = player.next;
     }
 
@@ -47,9 +47,9 @@ function getEmptyCells(board) {
 }
 
 function playerHasValidMoves(player, board) {
-  return getEmptyCells().filter(function (cell) {
+  return getEmptyCells(board).filter(function (cell) {
     return endangeredOponentNodes(cell, player).length > 0;
-  });
+  }).length > 0;
 }
 
 function boardIsFull(board) {
